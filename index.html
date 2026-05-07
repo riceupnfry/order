@@ -122,7 +122,7 @@
                     <img src="images/onigiri/Tofuchi.png" alt="Tofuchi" class="bento-img">
                 </div>
 
-                <div class="menu-card tall reveal-trigger" data-description="Adobo rice filled with savory beef tapa, a Filipino–Japanese fusion, rich and flavorful.">
+                <div class="menu-card reveal-trigger" data-description="Adobo rice filled with savory beef tapa, a Filipino–Japanese fusion, rich and flavorful.">
                     <div class="card-content">
                         <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">PREMIUM</span>
                         <h3>TAPA GOHAN</h3>
@@ -150,7 +150,17 @@
                     <img src="images/onigiri/GaniboFry.png" alt="Ganibo Fry" class="bento-img">
                 </div>
 
-<div class="menu-card wide reveal-trigger" data-description="Choose your perfect pair! Select from our signature rice base combos: Kimchi + Fried, Adobo + Fried, or Kimchi + Adobo.">
+                <div class="menu-card tall reveal-trigger" data-description="Fried rice filled with crispy tonkatsu. Crunchy with a satisfying taste.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">NEW</span>
+                        <h3 style="font-size: 1.5rem;">KATSU-FRY</h3>
+                        <span class="price">₱59</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/KatsuFry.png" alt="Katsu-Fry" class="bento-img">
+                </div>
+
+                <div class="menu-card wide reveal-trigger" data-description="Choose your perfect pair! Select from our signature rice base combos: Kimchi + Fried, Adobo + Fried, or Kimchi + Adobo.">
                     <div class="card-content">
                         <span class="tag" style="background: var(--nori-green); color: white;">PERFECT PAIR</span>
                         <h3>DUO-GIRI</h3>
@@ -161,16 +171,6 @@
                         <img src="images/onigiri/TapaGohan.png" alt="Onigiri 1" class="bento-img">
                         <img src="images/onigiri/Tofuchi.png" alt="Onigiri 2" class="bento-img">
                     </div>
-                </div>
-
-                                <div class="menu-card reveal-trigger" data-description="Fried rice filled with crispy tonkatsu. Crunchy with a satisfying taste.">
-                    <div class="card-content">
-                        <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">NEW</span>
-                        <h3 style="font-size: 1.5rem;">KATSU-FRY</h3>
-                        <span class="price">₱59</span>
-                        <div class="click-hint">VIEW DETAILS [+]</div>
-                    </div>
-                    <img src="images/onigiri/KatsuFry.png" alt="Katsu-Fry" class="bento-img">
                 </div>
 
                 <div class="menu-card wide reveal-trigger" data-description="The ultimate feast! Get 1 Fried Rice, 1 Kimchi Rice, and 1 Adobo Rice onigiri in one massive combo.">
@@ -260,7 +260,7 @@
                     <span class="value" id="spec-life">Consume within 12 Hours</span>
                 </div>
                 <div class="data-row">
-                    <span class="label">LOCATION</span>
+                    <span class="label">LOCATION OF TASTE PROFILE</span>
                     <span class="value" id="spec-origin">Tokyo via Manila</span>
                 </div>
             </div>
@@ -318,7 +318,7 @@
                         </select>
                     </div>
 
-                        <div id="duo-selection" class="dynamic-field">
+<div id="duo-selection" class="dynamic-field">
                         <div class="input-group">
                             <label>CHOOSE YOUR DUO COMBO</label>
                             <select id="duo-type" onchange="updateDuoFlavors()">
@@ -337,46 +337,66 @@
                                 <select id="duo-flavor-2" onchange="calculateTotal()"></select>
                             </div>
                         </div>
+                        <p style="font-size:0.75rem; color:var(--highlight); margin-bottom:15px; font-weight:bold;">CHOOSE 2 FREE SAUCES</p>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <select id="duo-sauce-1">
+                                    <option value="Teriyaki">Teriyaki</option><option value="Korean BBQ">Korean BBQ</option><option value="Cheese">Cheese</option><option value="Toyomansi">Toyomansi</option><option value="Sesame Soy">Sesame Soy</option><option value="Japanese Mayo">Japanese Mayo</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select id="duo-sauce-2">
+                                    <option value="Teriyaki">Teriyaki</option><option value="Korean BBQ">Korean BBQ</option><option value="Cheese">Cheese</option><option value="Toyomansi">Toyomansi</option><option value="Sesame Soy">Sesame Soy</option><option value="Japanese Mayo">Japanese Mayo</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="trio-selection" class="dynamic-field">
                         <p style="font-size:0.75rem; color:var(--highlight); margin-bottom:15px; font-weight:bold;">FRIED + KIMCHI + ADOBO (₱159)</p>
-                        
                         <div class="input-row">
                             <div class="input-group">
                                 <label>FRIED RICE</label>
                                 <select id="trio-flavor-1">
-                                    <option value="TAPA-FRY">TAPA-FRY</option>
-                                    <option value="KATSU-FRY">KATSU-FRY</option>
+                                    <option value="TAPA-FRY">TAPA-FRY</option><option value="KATSU-FRY">KATSU-FRY</option>
                                 </select>
                             </div>
                             <div class="input-group">
                                 <label>KIMCHI RICE</label>
                                 <select id="trio-flavor-2">
-                                    <option value="TONKATCHI">TONKATCHI</option>
-                                    <option value="TUNACHI">TUNACHI</option>
-                                    <option value="TOFUCHI">TOFUCHI</option>
+                                    <option value="TONKATCHI">TONKATCHI</option><option value="TUNACHI">TUNACHI</option><option value="TOFUCHI">TOFUCHI</option>
                                 </select>
                             </div>
                             <div class="input-group">
                                 <label>ADOBO RICE</label>
                                 <select id="trio-flavor-3">
-                                    <option value="TAPA GOHAN">TAPA GOHAN</option>
-                                    <option value="GANIBO FRY">GANIBO FRY</option>
+                                    <option value="TAPA GOHAN">TAPA GOHAN</option><option value="GANIBO FRY">GANIBO FRY</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p style="font-size:0.75rem; color:var(--highlight); margin-top:10px; margin-bottom:15px; font-weight:bold;">CHOOSE 3 FREE SAUCES</p>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <select id="trio-sauce-1">
+                                    <option value="Teriyaki">Teriyaki</option><option value="Korean BBQ">Korean BBQ</option><option value="Cheese">Cheese</option><option value="Toyomansi">Toyomansi</option><option value="Sesame Soy">Sesame Soy</option><option value="Japanese Mayo">Japanese Mayo</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select id="trio-sauce-2">
+                                    <option value="Teriyaki">Teriyaki</option><option value="Korean BBQ">Korean BBQ</option><option value="Cheese">Cheese</option><option value="Toyomansi">Toyomansi</option><option value="Sesame Soy">Sesame Soy</option><option value="Japanese Mayo">Japanese Mayo</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select id="trio-sauce-3">
+                                    <option value="Teriyaki">Teriyaki</option><option value="Korean BBQ">Korean BBQ</option><option value="Cheese">Cheese</option><option value="Toyomansi">Toyomansi</option><option value="Sesame Soy">Sesame Soy</option><option value="Japanese Mayo">Japanese Mayo</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <div class="input-row">
-                        <div class="input-group">
-                            <label>ONIGIRI / BUNDLE QTY</label>
-                            <input type="number" id="onigiri-qty" min="1" max="20" value="1">
-                        </div>
-                        <div class="input-group">
-                            <label>ICED TEA QTY (₱25/ea)</label>
-                            <input type="number" id="addon-drink" min="0" max="20" value="0">
-                        </div>
+                    <div class="input-group">
+                        <label>ONIGIRI / BUNDLE QTY</label>
+                        <input type="number" id="onigiri-qty" min="1" max="20" value="1">
                     </div>
 
                     <div class="input-row">

@@ -353,7 +353,6 @@ function calculateTotal() {
     let foodPrice = 0;
     let itemName = "Awaiting Selection...";
 
-    // A. Base Price & Name
     if (category === 'single') {
         const select = document.getElementById('single-flavor');
         foodPrice = parseFloat(select.options[select.selectedIndex]?.getAttribute('data-price')) || 0;
@@ -363,30 +362,23 @@ function calculateTotal() {
         foodPrice = parseFloat(select.options[select.selectedIndex]?.getAttribute('data-price')) || 0;
         itemName = `Duo-Giri (${select.value})`; 
     } else if (category === 'trio') {
-        foodPrice = 159; // Fixed price for Trio
+        foodPrice = 159; 
         itemName = "Trio-Giri";
     }
 
-    // B. Add-ons
     const sauceSelect = document.getElementById('addon-sauce');
     const saucePrice = parseFloat(sauceSelect.options[sauceSelect.selectedIndex]?.getAttribute('data-price')) || 0;
     const sauceName = sauceSelect.options[sauceSelect.selectedIndex]?.text.split(' (')[0].replace('Add ', '').trim() || "";
     
     const onigiriQty = parseInt(document.getElementById('onigiri-qty').value) || 1;
     const sauceQty = parseInt(document.getElementById('sauce-qty').value) || 0;
-    const drinkQty = parseInt(document.getElementById('addon-drink').value) || 0;
-    const drinkPrice = 25; 
 
-    // C. The Math
+    // Math (Drink Removed)
     let total = 0;
-    if (category) { 
-        total = (foodPrice * onigiriQty) + (saucePrice * sauceQty) + (drinkPrice * drinkQty);
-    }
+    if (category) total = (foodPrice * onigiriQty) + (saucePrice * sauceQty);
 
-    // D. Update the HTML UI
     const lineItem = document.getElementById('line-item');
     const lineSauce = document.getElementById('line-sauce');
-    const lineDrink = document.getElementById('line-drink');
     const display = document.getElementById('live-total');
     const liveReceiptTime = document.getElementById('live-receipt-time');
     const orderDate = document.getElementById('order-date').value;
@@ -400,27 +392,15 @@ function calculateTotal() {
     if (lineSauce) {
         if (saucePrice > 0 && sauceQty > 0 && category) {
             lineSauce.style.display = 'flex';
-            lineSauce.querySelector('.line-name').innerText = `${sauceQty}x ${sauceName}`;
+            lineSauce.querySelector('.line-name').innerText = `${sauceQty}x ${sauceName} (Extra)`;
             lineSauce.querySelector('.line-price').innerText = `₱${(saucePrice * sauceQty).toFixed(2)}`;
         } else {
             lineSauce.style.display = 'none';
         }
     }
 
-    if (lineDrink) {
-        if (drinkQty > 0) {
-            lineDrink.style.display = 'flex';
-            lineDrink.querySelector('.line-name').innerText = `${drinkQty}x Iced Tea`;
-            lineDrink.querySelector('.line-price').innerText = `₱${(drinkPrice * drinkQty).toFixed(2)}`;
-        } else {
-            lineDrink.style.display = 'none';
-        }
-    }
-
     if (liveReceiptTime) {
-        let dateText = orderDate ? orderDate : "---";
-        let timeText = orderTime ? orderTime : "--:--";
-        liveReceiptTime.innerText = `${dateText} @ ${timeText}`;
+        liveReceiptTime.innerText = `${orderDate || "---"} @ ${orderTime || "--:--"}`;
     }
 
     if (display) display.innerText = `₱${total.toFixed(2)}`;
@@ -477,15 +457,13 @@ if (orderForm) {
 
 // 5. FINALIZE ORDER & SEND TO SHEETS
 async function finalizeOrder() {
-    // THE FIX: Grabs the actual submit button inside the form, not the privacy button!
     const btnSubmit = orderForm.querySelector('button[type="submit"]');
     const originalText = btnSubmit.innerHTML;
     
     btnSubmit.innerHTML = "PROCESSING ORDER...";
     btnSubmit.disabled = true;
 
- // ... inside finalizeOrder() ...
-    // A. Figure out exactly what food they ordered
+    // A. Figure out exactly what food & free sauces they ordered
     const category = document.getElementById('order-category').value;
     let finalFoodItem = "";
 
@@ -495,18 +473,22 @@ async function finalizeOrder() {
         const type = document.getElementById('duo-type').value;
         const f1 = document.getElementById('duo-flavor-1').value;
         const f2 = document.getElementById('duo-flavor-2').value;
-        finalFoodItem = `Duo-Giri [${type}]: ${f1} & ${f2}`;
+        const s1 = document.getElementById('duo-sauce-1').value;
+        const s2 = document.getElementById('duo-sauce-2').value;
+        finalFoodItem = `Duo [${type}]: ${f1} & ${f2} (Free Sauces: ${s1}, ${s2})`;
     } else if (category === 'trio') {
         const f1 = document.getElementById('trio-flavor-1').value;
         const f2 = document.getElementById('trio-flavor-2').value;
         const f3 = document.getElementById('trio-flavor-3').value;
-        finalFoodItem = `Trio-Giri: ${f1}, ${f2}, & ${f3}`;
+        const s1 = document.getElementById('trio-sauce-1').value;
+        const s2 = document.getElementById('trio-sauce-2').value;
+        const s3 = document.getElementById('trio-sauce-3').value;
+        finalFoodItem = `Trio: ${f1}, ${f2}, & ${f3} (Free Sauces: ${s1}, ${s2}, ${s3})`;
     }
 
-// B. Grab the Add-ons, Quantities, and Date
+    // B. Grab the EXTRA Add-ons
     const sauce = document.getElementById('addon-sauce').value;
     const sauceQty = document.getElementById('sauce-qty').value;
-    const drinksQty = document.getElementById('addon-drink').value;
     const onigiriQty = document.getElementById('onigiri-qty').value; 
     const orderDate = document.getElementById('order-date').value;
     const liveTotal = document.getElementById('live-total').innerText;
@@ -515,10 +497,7 @@ async function finalizeOrder() {
     let masterOrderString = `${onigiriQty}x ${finalFoodItem}`;
     
     if (sauce !== "No Sauce" && sauceQty > 0) {
-        masterOrderString += ` | +${sauceQty}x ${sauce}`;
-    }
-    if (drinksQty > 0) {
-        masterOrderString += ` | +${drinksQty}x Iced Tea`;
+        masterOrderString += ` | +${sauceQty}x Extra ${sauce}`;
     }
 
 // D. Collect Data
