@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rice Up 'N Fry!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/OnigiriLogo-Transparent.png" type="image/x-icon">
+</head>
+<body>
+    <div id="privacy-modal" class="privacy-overlay">
+        <div class="privacy-content">
+            <h2 style="color: var(--highlight);">SYSTEM ACCESS & PRIVACY</h2>
+            <p>Welcome to <strong>Rice Up 'N Fry!</strong></p>
+            <p>We collect basic details (Name, Email) solely to process your onigiri order. We do not sell your data.</p>
+            <p style="font-size: 0.75rem; color: var(--highlight-secondary); margin-top: 15px;">
+                * AUDIO REQUIRED: Acknowledging this policy activates system UI sounds.
+            </p>
+            <button id="accept-privacy" class="btn-main full-width">ACKNOWLEDGE & ENTER</button>
+        </div>
+    </div>
+
+    <div id="scroll-progress"></div>
+
+<header id="main-header">
+    <div class="header-left">
+        <a href="#hero" class="navbar-logo-container">
+            <img src="images/Rice Up 'N Fry Logo Transparent.png" alt="Rice Up 'N Fry Logo" class="navbar-logo">
+        </a>
+        <div class="system-tag">ABM 2401 // EST. 2026</div>
+    </div>
+    
+    <nav id="nav-menu">
+        <a href="#menu" class="nav-link">MENU</a>
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#specs" class="nav-link">SPECS</a>
+        <a href="#order" class="nav-cta">GET ONIGIRI</a>
+    </nav>
+
+    <div class="header-controls">
+        <a href="#order" class="mobile-mini-cta">
+            <span class="pulse-dot"></span> ORDER
+        </a>
+
+    <button id="mobile-menu-btn" class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    </div>
+</header>
+
+<div id="loading-screen">
+    <div class="loader-content">
+        <div class="glitch-logo-container">
+            <img src="images/Rice Up 'N Fry Logo Transparent.png" alt="Rice Up 'N Fry Logo" class="loader-logo">
+        </div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+        <p class="loader-status">🥤 INITIALIZING SYSTEM...</p>
+    </div>
+</div>
+
+<section id="hero" class="hero">
+    <div class="parallax-bg" id="bg-text">おにぎり</div>
+
+    <!--<img src="images/saktree.png" alt="Sakura Branch" class="sakura-tree">-->
+
+    <div id="sakura-container"></div>
+    
+    <div class="hero-content reveal-trigger">
+        <div class="hero-text-side">
+            <h1 class="bold-title">RICE UP 'N FRY!</h1>
+            <p class="subtitle">HUNGRY?<br>IT'S TIME TO RICE UP!</p>
+            <a href="#menu" class="btn-main">SEE THE MENU</a>
+        </div>
+        
+        <div class="hero-logo-side">
+            <img src="images/Rice Up 'N Fry Logo Transparent.png" alt="Rice Up 'N Fry! Manila 2024" class="hero-center-logo" id="hero-img">
+        </div>
+    </div>
+</section>
+
+    <section id="menu" class="menu-section">
+        <div class="section-header reveal-trigger">
+            <h2 class="outline-text">THE BENTO BOX</h2>
+            <p>Handcrafted in Manila. Packed with flavor.</p>
+        </div>
+
+        <div class="bento-box-wrapper">
+            <div class="bento-strap"></div>
+            <div class="chopsticks"></div>
+
+            <div class="menu-grid">
+                
+                <div class="menu-card wide reveal-trigger" data-description="Kimchi fried rice filled with crispy tonkatsu, a Japanese–Korean fusion.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--highlight);">BEST SELLER</span>
+                        <h3>TONKATCHI</h3>
+                        <span class="price">₱65</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/Tonkatchi.png" alt="Tonkatchi" class="bento-img">
+                </div>
+
+                <div class="menu-card tall reveal-trigger" data-description="Kimchi fried rice filled with tuna mixed with mayonnaise, light with a spicy kick.">
+                    <div class="card-content">
+                        <h3>TUNACHI</h3>
+                        <span class="price">₱65</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/Tunachi.png" alt="Tunachi" class="bento-img">
+                </div>
+
+                <div class="menu-card wide reveal-trigger" data-description="Kimchi fried rice filled with crispy tofu, a Korean style with a hint of spice.">
+                    <div class="card-content">
+                        <h3>TOFUCHI</h3>
+                        <span class="price">₱65</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/Tofuchi.png" alt="Tofuchi" class="bento-img">
+                </div>
+
+                <div class="menu-card tall reveal-trigger" data-description="Adobo rice filled with savory beef tapa, a Filipino–Japanese fusion, rich and flavorful.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">PREMIUM</span>
+                        <h3>TAPA GOHAN</h3>
+                        <span class="price">₱59</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/TapaGohan.png" alt="Tapa Gohan" class="bento-img">
+                </div>
+
+                <div class="menu-card reveal-trigger" data-description="Fried rice filled with savory beef tapa, a Filipino dish, simple yet filling.">
+                    <div class="card-content">
+                        <h3>TAPA-FRY</h3>
+                        <span class="price">₱59</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/TapaFry.png" alt="Tapa-Fry" class="bento-img">
+                </div>
+
+                <div class="menu-card reveal-trigger" data-description="Adobo rice filled with sweet longganisa, a Filipino dish.">
+                    <div class="card-content">
+                        <h3 style="font-size: 1.5rem;">GANIBO FRY</h3>
+                        <span class="price">₱59</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/GaniboFry.png" alt="Ganibo Fry" class="bento-img">
+                </div>
+
+<div class="menu-card wide reveal-trigger" data-description="Choose your perfect pair! Select from our signature rice base combos: Kimchi + Fried, Adobo + Fried, or Kimchi + Adobo.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--nori-green); color: white;">PERFECT PAIR</span>
+                        <h3>DUO-GIRI</h3>
+                        <span class="price">FROM ₱109</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <div class="bento-group">
+                        <img src="images/onigiri/TapaGohan.png" alt="Onigiri 1" class="bento-img">
+                        <img src="images/onigiri/Tofuchi.png" alt="Onigiri 2" class="bento-img">
+                    </div>
+                </div>
+
+                                <div class="menu-card reveal-trigger" data-description="Fried rice filled with crispy tonkatsu. Crunchy with a satisfying taste.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">NEW</span>
+                        <h3 style="font-size: 1.5rem;">KATSU-FRY</h3>
+                        <span class="price">₱59</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <img src="images/onigiri/KatsuFry.png" alt="Katsu-Fry" class="bento-img">
+                </div>
+
+                <div class="menu-card wide reveal-trigger" data-description="The ultimate feast! Get 1 Fried Rice, 1 Kimchi Rice, and 1 Adobo Rice onigiri in one massive combo.">
+                    <div class="card-content">
+                        <span class="tag" style="background: var(--highlight-secondary); color: var(--text-dark);">ULTIMATE COMBO</span>
+                        <h3>TRIO-GIRI</h3>
+                        <span class="price">₱159</span>
+                        <div class="click-hint">VIEW DETAILS [+]</div>
+                    </div>
+                    <div class="bento-group">
+                        <img src="images/onigiri/TapaGohan.png" alt="Onigiri 1" class="bento-img">
+                        <img src="images/onigiri/Tofuchi.png" alt="Onigiri 2" class="bento-img">
+                        <img src="images/onigiri/GaniboFry.png" alt="Onigiri 3" class="bento-img">
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section id="about" class="about-section reveal-trigger">
+<div class="about-container">
+            <div class="about-visual">
+                <div class="visual-box">
+                    <img id="dynamic-about-img" src="https://www.thespruceeats.com/thmb/oualJ9Q6aCBHPFhvjGGN1p8y7xs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rice-balls-2031330-steps-08-be9b06ac65604375be25a1c749721f04.JPG" alt="Onigiri Making" class="about-img active">
+                    <div class="overlay-text">EST. 2026</div>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <div class="text-block" data-image="https://www.thespruceeats.com/thmb/oualJ9Q6aCBHPFhvjGGN1p8y7xs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rice-balls-2031330-steps-08-be9b06ac65604375be25a1c749721f04.JPG">
+                    <h2 class="bold-header">MADE WITH <br><span>LOVE</span><br> & RICE.</h2>
+                    <p>Born in the bustling streets of Manila. We believe every great day starts with a satisfying bite. Every triangle is shaped by hand to fuel your journey.</p>
+                </div>
+                
+                <div class="text-block" data-image="https://www.kikkoman.com/en/cookbook/feature/img/onigiri_im03.jpg">
+                    <h2 class="bold-header">FOR THE <br><span>HUSTLE.</span></h2>
+                    <p>Whether you're rushing to your next class or hanging out at the Lower Grounds, our onigiri is the ultimate grab-and-go comfort food. Easy to hold, hard to put down.</p>
+                </div>
+
+                <div class="text-block" data-image="https://assets3.thrillist.com/v1/image/3082780/1200x630/flatten;crop_down;webp=auto;jpeg_quality=70">
+                    <h2 class="bold-header">FLAVOR <br><span>BOMBS.</span></h2>
+                    <p>Inspired by Japanese, Filipino and Korean flavors. It's affordable, packed with rich fillings, and guaranteed to hit the spot every single time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="specs-section reveal-trigger">
+        <div class="specs-header">
+            <h2 class="outline-text">WHAT'S INSIDE?</h2>
+            <p>Select a flavor to view its specific components.</p>
+            
+            <div class="flavor-selector">
+                <button class="flavor-btn active" data-flavor="Tonkatchi">TONKATCHI</button>
+                <button class="flavor-btn" data-flavor="Tunachi">TUNACHI</button>
+                <button class="flavor-btn" data-flavor="Tofuchi">TOFUCHI</button>
+                <button class="flavor-btn" data-flavor="GaniboFry">GANIBO FRY</button>
+                <button class="flavor-btn" data-flavor="TapaGohan">TAPA GOHAN</button>
+                <button class="flavor-btn" data-flavor="TapaFry">TAPA-FRY</button>
+                <button class="flavor-btn" data-flavor="KatsuFry">KATSU-FRY</button>
+            </div>
+        </div>
+
+        <div class="specs-container">
+            <div class="blueprint-area">
+                <div class="onigiri-schematic">
+                    <p class="blueprint-text">Tap for Ingredients</p>
+                    <div class="scan-line"></div>
+                    <div class="dot" id="dot-1" style="top: 75%; left: 22%;" data-info="Premium Roasted Nori"></div>
+                    <div class="dot" id="dot-2" style="top: 20%; left: 45%;" data-info="Kimchi Fried Rice"></div>
+                    <div class="dot" id="dot-3" style="top: 50%; left: 55%;" data-info="Crispy Tonkatsu"></div>
+                    <img src="images/onigiri/Tonkatchi.png" alt="Onigiri Blueprint" class="blueprint-img">
+                </div>
+            </div>
+
+            <div class="data-panel">
+<div class="data-panel">
+                <div class="data-row">
+                    <span class="label">TASTE PROFILE</span>
+                    <span class="value" id="spec-profile">Savory & Crispy</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">WRAP STYLE</span>
+                    <span class="value" id="spec-wrap">Crispy Double-Wrap</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">BEST BEFORE</span>
+                    <span class="value" id="spec-life">Consume within 12 Hours</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">LOCATION</span>
+                    <span class="value" id="spec-origin">Tokyo via Manila</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="order-section reveal-trigger">
+        <div class="order-grid">
+            <div class="order-summary-panel">
+                <h2 class="outline-text">CHECKOUT</h2>
+                <div class="summary-item">
+                    <span>STATUS:</span>
+                    <span class="highlight-text">ACCEPTING ORDERS</span>
+                </div>
+                <div class="summary-item">
+                    <span>PICKUP POINT:</span>
+                    <span class="highlight-text">LOWER GROUNDS - BOOTH 3</span>
+                </div>
+                <img src="images/OnigiriLogo.png" class="order-bg-logo" alt="">
+            </div>
+
+            <div class="form-panel">
+                <form class="order-form">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>FULL NAME</label>
+                            <input type="text" id="customer-name" placeholder="Juan Dela Cruz" required>
+                        </div>
+                        <div class="input-group">
+                            <label>EMAIL ADDRESS (For Receipt & Payment)</label>
+                            <input type="email" id="customer-email" placeholder="juan@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>WHAT ARE YOU CRAVING?</label>
+                        <select id="order-category" onchange="updateFormUI()" required>
+                            <option value="" disabled selected>-- SELECT ORDER TYPE --</option>
+                            <option value="single">Single Onigiri</option>
+                            <option value="duo">Duo-Giri (2 Pieces)</option>
+                            <option value="trio">Trio-Giri (3 Pieces)</option>
+                        </select>
+                    </div>
+
+                    <div id="single-selection" class="input-group dynamic-field">
+                        <label>CHOOSE YOUR FLAVOR</label>
+                        <select id="single-flavor">
+                            <option value="TONKATCHI" data-price="65">TONKATCHI (₱65)</option>
+                            <option value="TUNACHI" data-price="65">TUNACHI (₱65)</option>
+                            <option value="TOFUCHI" data-price="65">TOFUCHI (₱65)</option>
+                            <option value="GANIBO FRY" data-price="59">GANIBO FRY (₱59)</option>
+                            <option value="TAPA GOHAN" data-price="59">TAPA GOHAN (₱59)</option>
+                            <option value="TAPA-FRY" data-price="59">TAPA-FRY (₱59)</option>
+                            <option value="KATSU-FRY" data-price="59">KATSU-FRY (₱59)</option>
+                        </select>
+                    </div>
+
+                        <div id="duo-selection" class="dynamic-field">
+                        <div class="input-group">
+                            <label>CHOOSE YOUR DUO COMBO</label>
+                            <select id="duo-type" onchange="updateDuoFlavors()">
+                                <option value="KIMCHI + FRIED RICE" data-price="119">Kimchi + Fried Rice (₱119)</option>
+                                <option value="KIMCHI + ADOBO RICE" data-price="119">Kimchi + Adobo Rice (₱119)</option>
+                                <option value="ADOBO + FRIED RICE" data-price="109">Adobo + Fried Rice (₱109)</option>
+                            </select>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label id="duo-label-1">FLAVOR 1</label>
+                                <select id="duo-flavor-1" onchange="calculateTotal()"></select>
+                            </div>
+                            <div class="input-group">
+                                <label id="duo-label-2">FLAVOR 2</label>
+                                <select id="duo-flavor-2" onchange="calculateTotal()"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="trio-selection" class="dynamic-field">
+                        <p style="font-size:0.75rem; color:var(--highlight); margin-bottom:15px; font-weight:bold;">FRIED + KIMCHI + ADOBO (₱159)</p>
+                        
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>FRIED RICE</label>
+                                <select id="trio-flavor-1">
+                                    <option value="TAPA-FRY">TAPA-FRY</option>
+                                    <option value="KATSU-FRY">KATSU-FRY</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>KIMCHI RICE</label>
+                                <select id="trio-flavor-2">
+                                    <option value="TONKATCHI">TONKATCHI</option>
+                                    <option value="TUNACHI">TUNACHI</option>
+                                    <option value="TOFUCHI">TOFUCHI</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>ADOBO RICE</label>
+                                <select id="trio-flavor-3">
+                                    <option value="TAPA GOHAN">TAPA GOHAN</option>
+                                    <option value="GANIBO FRY">GANIBO FRY</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>ONIGIRI / BUNDLE QTY</label>
+                            <input type="number" id="onigiri-qty" min="1" max="20" value="1">
+                        </div>
+                        <div class="input-group">
+                            <label>ICED TEA QTY (₱25/ea)</label>
+                            <input type="number" id="addon-drink" min="0" max="20" value="0">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>EXTRA SAUCE?</label>
+                            <select id="addon-sauce">
+                                <option value="No Sauce" data-price="0">No Sauce (₱0)</option>
+                                <option value="Cheese" data-price="10">Add Teriyaki Sauce (+₱10)</option>
+                                <option value="Cheese" data-price="10">Add Korean Barbecue (+₱10)</option>
+                                <option value="Cheese" data-price="10">Add Cheese (+₱10)</option>
+                                <option value="Cheese" data-price="10">Add Toyomansi (+₱10)</option>
+                                <option value="Cheese" data-price="10">Add Sesame Soy Sauce (+₱10)</option>
+                                <option value="Cheese" data-price="10">Add Japanese Mayo (+₱10)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>SAUCE QTY</label>
+                            <input type="number" id="sauce-qty" min="0" max="20" value="0">
+                        </div>
+                    </div>
+
+<div class="input-row">
+                        <div class="input-group">
+                            <label>PICKUP DATE</label>
+                            <select id="order-date" required>
+                                <option value="" disabled selected>-- SELECT DATE --</option>
+                                <option value="MAY 15">MAY 15 (FRIDAY)</option>
+                                <option value="MAY 16">MAY 16 (SATURDAY)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>PICKUP TIME</label>
+                            <input type="time" id="order-time" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>PAYMENT METHOD</label>
+                        <select id="payment-method" required>
+                            <option value="CASH">Cash on Pickup</option>
+                            <option value="GCASH">Online Payment (GCash/Maya)</option>
+                        </select>
+                    </div>
+
+                    <div class="receipt-preview-box">
+                        <h4 class="receipt-title">ORDER SUMMARY</h4>
+                        
+                        <div class="receipt-breakdown">
+                            <div class="receipt-line" id="line-item">
+                                <span class="line-name">Awaiting Selection...</span>
+                                <span class="line-price">₱0.00</span>
+                            </div>
+                            
+                            <div class="receipt-line" id="line-sauce" style="display: none;">
+                                <span class="line-name">---</span>
+                                <span class="line-price">₱0.00</span>
+                            </div>
+                            
+                            <div class="receipt-line" id="line-drink" style="display: none;">
+                                <span class="line-name">---</span>
+                                <span class="line-price">₱0.00</span>
+                            </div>
+                        </div>
+
+<div class="receipt-total-line" style="background: transparent; color: var(--text-dark); box-shadow: none; padding: 0; margin-top: 15px; font-size: 0.85rem; border-top: 2px dashed rgba(255, 107, 139, 0.3); padding-top: 15px; border-radius: 0;">
+                            <span style="font-weight: 800;">PICKUP:</span>
+                            <span id="live-receipt-time" style="font-weight: 900; color: var(--highlight);">---</span>
+                        </div>
+
+                        <div class="receipt-total-line">
+                            <span class="price-label">TOTAL AMOUNT DUE:</span>
+                            <span class="price-value" id="live-total">₱0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group checkbox-container" style="margin-top: 10px;">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-text">MY ORDER DETAILS ARE CORRECT</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-main full-width">CONFIRM ORDER</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracker" class="order-section reveal-trigger" style="border-top: 1px solid #333;">
+        <div class="section-header">
+            <h2 class="outline-text">ORDER TRACKER</h2>
+            <p>ENTER YOUR ORDER ID BELOW TO CHECK YOUR STATUS.</p>
+        </div>
+        
+        <div class="tracker-container" style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px; border: 1px solid #222; background: #111;">
+            <div class="input-group">
+                <label>ORDER ID (e.g., RUF-123456)</label>
+                <input type="text" id="track-id" placeholder="RUF-XXXXXX" style="text-align: center; font-size: 1.5rem;">
+            </div>
+            <button class="btn-main full-width" onclick="trackOrder()">CHECK STATUS</button>
+            
+            <div id="track-result" style="margin-top: 30px; display: none;">
+                <div id="status-display" style="padding: 20px; border: 1px solid var(--highlight); background: #000;">
+                    <span id="status-text" style="font-weight: 900; font-size: 1.2rem; text-transform: uppercase;">SCANNING...</span>
+                    <p id="status-note" style="font-size: 0.8rem; color: #666; margin-top: 10px;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section reveal-trigger">
+        <div class="contact-grid">
+            <div class="contact-map-box">
+                <div class="map-overlay">
+                    <span class="coord-label">MEETUP: LOWER GROUNDS - BOOTH 3</span>
+                    <span class="coord-label">AVAILABLE: MAY 15 and 16</span>
+                </div>
+                <img src="https://thumbs.dreamstime.com/b/map-philippines-manila-capital-city-127866598.jpg" alt="Manila Streets" class="map-img">
+            </div>
+
+            <div class="contact-details">
+                <h2 class="outline-text">SAY HELLO</h2>
+                <div class="channel-list">
+                    <div class="channel-item">
+                        <span class="channel-id">EMAIL US</span>
+                        <p>riceupnfry@gmail.com</p>
+                    </div>
+                    <div class="channel-item">
+                        <span class="channel-id">INSTAGRAM</span>
+                        <p>@riceupn_fry</p>
+                    </div>
+                    <div class="channel-item">
+                        <span class="channel-id">LOCATION</span>
+                        <p>NU Nazareth School, Lower Grounds - Booth 3<br>Manila, Philippines</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="scrolling-marquee">
+        <div class="marquee-track">
+            <span>✦ HANDCRAFTED IN MANILA</span>
+            <span>✦ PREMIUM ONIGIRI</span>
+            <span>✦ ABM 2401</span>
+            <span>✦ FUEL FOR THE HUSTLE</span>
+            <span>✦ 100% FRESH</span>
+            <span>✦ HUNGRY? IT'S TIME TO RICE UP!</span>
+        </div>
+        <div class="marquee-track">
+            <span>✦ HANDCRAFTED IN MANILA</span>
+            <span>✦ PREMIUM ONIGIRI</span>
+            <span>✦ ABM 2401</span>
+            <span>✦ FUEL FOR THE HUSTLE</span>
+            <span>✦ 100% FRESH</span>
+            <span>✦ HUNGRY? IT'S TIME TO RICE UP!</span>
+        </div>
+    </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h2 class="footer-logo">Rice Up 'N Fry!</h2>
+                <p>Handcrafted in the City of Manila. <br>Driven by 12 - ABM 2401.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>NAVIGATION</h4>
+                    <a href="#menu" id="fo-ol">MENU</a>
+                    <a href="#about" id="fo-ol">OUR STORY</a>
+                    <a href="#specs" id="fo-ol">INSIDE THE ROLL</a>
+                </div>
+                <div class="link-group">
+                    <h4>CONNECT</h4>
+                    <a href="https://www.instagram.com/riceupn_fry" id="fo-ol" target="_blank">INSTAGRAM</a>
+                    <a href="https://www.facebook.com/profile.php?id=61571985350054&sk=followers&notif_ids[0]=100085624913542&notif_ids[1]=100040440735029&notif_ids[2]=100014657042113&notif_ids[3]=100014411177147&notif_id=1775613487662232&notif_t=follow_profile&ref=notif" id="fo-ol" target="_blank">FACEBOOK</a>
+                    <a href="#" id="fo-ol">WEBSITE</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                © 2026 Rice Up 'N Fry! | ABM 2401 St. Isidore The Worker
+            </div>
+            <div class="location-stamp">
+                MANILA, PH
+            </div>
+        </div>
+    </footer>
+
+<div id="receipt-overlay" class="loader-hidden">
+        <div class="thermal-receipt">
+            <div class="receipt-header">
+                <h3>Rice Up 'N Fry!</h3>
+                <p>ORDER ID: <span id="receipt-id">#0000</span></p>
+            </div>
+            
+            <div class="receipt-body">
+                <div class="receipt-row" style="flex-direction: column; align-items: flex-start;">
+                    <span style="font-size: 0.75rem; color: #888; margin-bottom: 5px;">ORDER SUMMARY:</span>
+                    <span id="receipt-model" style="font-size: 0.85rem; text-align: left; line-height: 1.5; color: var(--highlight);">---</span>
+                </div>
+                
+                <div class="receipt-row" style="margin-top: 15px;">
+                    <span>PICKUP TIME:</span>
+                    <span id="receipt-time">---</span>
+                </div>
+            </div>
+            
+            <div class="receipt-footer">
+                <p>PLEASE WAIT FOR EMAIL CONFIRMATION<br>*This page will reload</p>
+                <div class="barcode" style="margin-top: 15px;">|||||| || |||| |||</div>
+            </div>
+            <button onclick="closeReceipt()" class="btn-main small">DONE</button>
+        </div>
+    </div>
+
+<div id="product-modal">
+        <div class="modal-content receipt-style">
+            <button class="close-modal">CLOSE [X]</button>
+            <div class="modal-body">
+                
+                <div class="receipt-title" style="font-size: 1.1rem;">ITEM DETAILS</div>
+                
+                <img id="modal-img" src="" alt="Flavor Image">
+                
+                <div class="receipt-breakdown" style="margin-top: 20px;">
+                    
+                    <div class="receipt-line" style="border-bottom: 2px dashed rgba(255, 107, 139, 0.3); padding-bottom: 10px; margin-bottom: 15px; align-items: center;">
+                        <span class="line-name" id="modal-title" style="font-size: 1.3rem; color: var(--text-dark); text-transform: uppercase;">PRODUCT_NAME</span>
+                        <span class="line-price" id="modal-price" style="font-size: 1.4rem; color: var(--highlight);">₱00</span>
+                    </div>
+                    
+                    <p id="modal-desc">Description goes here...</p>
+                </div>
+
+                <div class="receipt-footer" style="border-top: 2px dashed #ccc; padding-top: 20px; text-align: center;">
+                    <div class="barcode" style="margin-bottom: 15px; color: #333;">|||||| || |||| |||</div>
+                    <button class="btn-main full-width" id="modal-order-btn" style="margin-top: 0;">ADD TO ORDER</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
