@@ -468,7 +468,9 @@ async function finalizeOrder() {
     let finalFoodItem = "";
 
     if (category === 'single') {
-        finalFoodItem = document.getElementById('single-flavor').value;
+        const f1 = document.getElementById('single-flavor').value;
+        const s1 = document.getElementById('single-sauce-1').value;
+        finalFoodItem = `${f1} (Free Sauce: ${s1})`;
     } else if (category === 'duo') {
         const type = document.getElementById('duo-type').value;
         const f1 = document.getElementById('duo-flavor-1').value;
