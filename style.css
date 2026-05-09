@@ -204,8 +204,9 @@ body {
    04. HEADER & NAVIGATION
    ========================================================================== */
 #main-header {
-    position: fixed;
-    top: 30px; left: 50%; transform: translateX(-50%); /* Floats perfectly in the center */
+position: fixed;
+    top: 60px; /* Pushed down from 30px to make room for the banner! */
+    left: 50%; transform: translateX(-50%);
     width: 95%; max-width: 1200px;
     padding: 10px 30px;
     display: flex; justify-content: space-between; align-items: center;
@@ -221,7 +222,7 @@ body {
 
 /* Shrinks slightly when scrolling */
 #main-header.active {
-    top: 20px;
+top: 50px; /* Pushed down from 20px */
     padding: 8px 30px;
     background: rgba(255, 255, 255, 0.3); /* Frosted glass effect */
     box-shadow: 0 10px 25px rgba(255, 107, 139, 0.15);
@@ -913,7 +914,11 @@ nav { display: flex; align-items: center; gap: 15px; transition: 0.3s; }
 #sold-out-banner {
     background: var(--highlight-secondary); color: #000; text-align: center; padding: 12px;
     font-weight: 900; font-size: 0.85rem; letter-spacing: 2px; position: fixed; top: 0; width: 100%;
-    z-index: 1000000; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-bottom: 3px solid white;
+    
+    /* THE FIX: Lowered below the Loading Screen (9999) but above the Navbar (1000) */
+    z-index: 9990; 
+    
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-bottom: 3px solid white;
 }
 
 /* --- THE LOADER LOGO FIX --- */
@@ -942,10 +947,16 @@ nav { display: flex; align-items: center; gap: 15px; transition: 0.3s; }
     .outline-text { font-size: 2.8rem; }
     
 /* Header & Mobile Dropdown Fixes */
-    #main-header { 
-        top: 10px; width: 95%; padding: 10px 20px !important; 
+#main-header { 
+        top: 75px; /* THE FIX: Overrides the old 10px rule that was causing the crash! */
+        width: 95%; padding: 10px 20px !important; 
         border-radius: 30px; 
     }
+
+    #main-header.active {
+        top: 68px;
+    }
+
     .system-tag { display: none; }
     .navbar-logo { height: 35px; } /* Slightly smaller to fit the text */
     
@@ -1014,7 +1025,11 @@ nav { display: flex; align-items: center; gap: 15px; transition: 0.3s; }
     .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: var(--text-dark); }
 
     /* Hero Section Mobile Fixes (THE FIX: Change stack order) */
-    .hero { flex-direction: column; justify-content: flex-start; padding-top: 80px; height: auto; min-height: 100vh; }
+    .hero { 
+        flex-direction: column; justify-content: flex-start; 
+        padding-top: 130px; /* THE FIX: Pushes the hero text down so it isn't hidden behind the newly lowered navbar */
+        height: auto; min-height: 100vh; 
+    }
     .hero-content { flex-direction: column; gap: 30px; text-align: center; }
 
     /* Text flows top... */
